@@ -148,7 +148,7 @@ void gdy_maly_niski(void)
         	int pid = fork();
 
         if ( pid == 0 ) {
-            execvp( "find", argv );
+            execvp( "/home/ms/smacz/rejestrator/nagrywaj", argv );
         }
         */
         syslog(LOG_NOTICE, "Starting 'nagrywaj:%d'", status);
@@ -162,6 +162,7 @@ void gdy_maly_wysoki(void)
 int main(int argc, char *argv[]) {
     int opt;
     bool demonizacja=false;
+    if(chdir("/home/ms/smacz/rejestrator")!=0){perror("chdir nieudane"); exit(1);};
     signal(SIGINT,sig_handler);
     syslog(LOG_NOTICE, "Smaczdaemon start.");
     //signal(SIGTERM,sig_handler);
@@ -179,7 +180,7 @@ int main(int argc, char *argv[]) {
     {
         skeleton_daemon();
         printf = nic;
-    }else{syslog = syslog_dummy;}
+    }//else{syslog = syslog_dummy;}
     syslog(LOG_NOTICE, "Smaczdaemon demonized.");
     ustawWiringPi();
     ustawPinDuzegoPrzelacznika(gdy_duzy_niski, gdy_duzy_wysoki);
