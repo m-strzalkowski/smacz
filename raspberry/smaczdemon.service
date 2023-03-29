@@ -1,0 +1,18 @@
+[Unit]
+Description=Smacz Monitoring System Daemon
+Documentation=man:smaczdemon(1)
+#Documentation=https://www.rsyslog.com/doc/
+
+[Service]
+Type=simple
+ExecStart=/home/ms/smacz/rejestrator/smaczdemon -d
+StandardOutput=null
+Restart=on-failure
+TasksMax=8
+# Increase the default a bit in order to allow many simultaneous
+# files to be monitored, we might need a lot of fds.
+#LimitNOFILE=16384
+
+[Install]
+WantedBy=multi-user.target
+Alias=smaczdemon.service
