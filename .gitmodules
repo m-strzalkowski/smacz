@@ -1,0 +1,3 @@
+[submodule "raspberry/smacz/rejestrator"]
+	path = raspberry/smacz/rejestrator
+	url = https://github.com/m-strzalkowski/rejestrator
