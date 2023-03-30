@@ -1,1 +1,6 @@
 .ssh
+raspberry/smacz/ArduiPi_OLED
+raspberry/smacz/LSM9DS1_RaspberryPi_Library
+raspberry/smacz/ssd1306_i2c
+raspberry/smacz/WiringPi
+raspberry/smacz/WiringPi-Python
