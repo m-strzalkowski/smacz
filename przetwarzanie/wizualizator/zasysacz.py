@@ -18,7 +18,7 @@ def znajdź_ip(polecenie):
 def znajdź_ip_():
     if os.name == 'posix':
         print('system zgodny z POSIX, używam sh')
-        polecenie = 'szukaj.sh'
+        polecenie = './szukaj.sh'
     if os.name == 'nt':
         print('Windows, używam .bat')
         polecenie = 'win_szukaj.bat'
