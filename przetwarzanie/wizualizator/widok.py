@@ -9,6 +9,8 @@ import re
 
 from zasysacz import nasluch_ssh
 from dekoder import DekoderRejestratora
+import matplotlib
+matplotlib.use('TkAgg')
 MAXLEN = 1000
 MAXSKIP = 100
 #x_data, y_data = [], []
