@@ -2,6 +2,7 @@ from subprocess import Popen, PIPE
 import base64
 import paramiko
 import re
+import os
 def znajdź_ip(polecenie):
     print(polecenie.split(" "))
     proc = Popen(polecenie.split(" "), stdout=PIPE, stderr=PIPE)
@@ -13,13 +14,22 @@ def znajdź_ip(polecenie):
         if re.match("^(\d{1,3}\.){3}\d{1,3}$",line):
             return line
     return None
-def win_znajdź_ip():
-    return znajdź_ip('win_szukaj.bat')
+#Zawsze zwraca jakieś ip, nie wiadomo, czy dobre
+def znajdź_ip_():
+    if os.name == 'posix':
+        print('system zgodny z POSIX, używam sh')
+        polecenie = 'szukaj.sh'
+    if os.name == 'nt':
+        print('Windows, używam .bat')
+        polecenie = 'win_szukaj.bat'
+    piip = znajdź_ip(polecenie)
+    if not piip:
+        print('Nie znaleziono ip urządzenia! Wpisz go proszę.')
+        piip = input()
+    return piip
 
 def nasluch_ssh(blokujacy=False,excmd=True,flush=True):
-    piip = win_znajdź_ip()
-    if not piip:
-        raise Exception('Nie znaleziono ip!')
+    piip = znajdź_ip_()
     print(f'piip:{piip}')
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
